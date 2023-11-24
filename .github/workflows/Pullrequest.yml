@@ -17,10 +17,10 @@ jobs:
         run: echo ${{env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
         
       - name: Raise PR
-        id: test-1
+        id: test1
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: "auto-pr-branch"
+          branch: "auto-pr-branch1"
           base: main
           title: "demo for auto pr"
           committer: ${{env.GIT_COMMIT_AUTHOR_NAME }} <${{env.GIT_COMMIT_AUTHOR_EMAIL }}">
@@ -28,11 +28,11 @@ jobs:
           body:
             This is to show automatic PR creation
           token: ${{secrets.GITHUB_TOKEN }}
-          delete-branch: true
+          #delete-branch: true
 
       - name: Merge Pull request1
         uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.test-1.outputs.pull-request-number }}
+          number: ${{ steps.test1.outputs.pull-request-number }}
           method: squash
