@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checking out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         
       - name: extract git commit data
         uses: rlespinasse/git-commit-data-action@v1.x
@@ -18,7 +18,7 @@ jobs:
         
       - name: Raise PR
         id: test1
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           branch: "branch1"
           base: main
@@ -45,10 +45,10 @@ jobs:
       #  uses: juliangruber/approve-pull-request-action@v1
        # with:
         #  github-token: ${{ secrets.APPROVER_DEMO }}
-         # #number: ${{ steps.test-1.outputs.pull-request-number }}
+         # #number: ${{ steps.test1.outputs.pull-request-number }}
 
       - name: Merge Pull request1
-        uses: juliangruber/merge-pull-request-action@v1
+        uses: juliangruber/merge-pull-request-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.test1.outputs.pull-request-number }}
