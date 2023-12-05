@@ -4,11 +4,11 @@ on:
     branches:
       - main
 jobs:
-  updateAuthor:
+  PRcreation:
     runs-on: ubuntu-latest
     steps:
       - name: checking out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         
       - name: extract git commit data
         uses: rlespinasse/git-commit-data-action@v1.x
@@ -18,7 +18,7 @@ jobs:
         
       - name: Raise PR
         id: test1
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v3
         with:
           branch: "branch1"
           base: main
@@ -32,15 +32,15 @@ jobs:
 
       - name: Pull request number
         run: |
-          echo "Pull Request Number - ${{ github.event.pull_request.number }}"
+          echo "Pull Request Number - ${{ steps.test1.outputs.pull-request-number }}"
 
       - name: Approve pull Request
-        if: ${{ github.event.pull_request.number }}
+        if: ${{ steps.test1.outputs.pull-request-number }}
         uses: hmarr/auto-approve-action@v2
         with:
           #github-token: ${{ secrets.GITHUB_TOKEN }}
           github-token: ${{ secrets.APPROVER_DEMO }}
-          pull-request-number: ${{ github.event.pull_request.number }}
+          pull-request-number: ${{ steps.test1.outputs.pull-request-number }}
      # - name: Approve Pull Request1
       #  uses: juliangruber/approve-pull-request-action@v1
        # with:
