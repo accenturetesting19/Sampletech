@@ -4,12 +4,9 @@ on:
         workflows: ["Demo to create automatic PR"]
         types:
           - completed
-#on:
- # pull_request:
-    # The branches below must be a subset of the branches above
-  #  branches: [ "main" ]
-   # paths:
-    #- 'src/**'
+    push:
+        paths:
+        - 'src/**'
 
 jobs:
   analyze:
