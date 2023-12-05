@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-      - master
-
+      
 jobs:
   AutomaticPR:
     runs-on: ubuntu-latest
@@ -23,7 +22,7 @@ jobs:
         id: test-1
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: "PRbranchcreate"
+          branch: "firstbranch"
           base: main
           title: "demo for auto pr1"
           committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
