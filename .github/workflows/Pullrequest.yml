@@ -3,7 +3,7 @@ name: Demo to create automatic PR
 on:
   push:
     branches:
-      - main
+      - '*'
       
 jobs:
   AutomaticPR:
@@ -20,7 +20,7 @@ jobs:
         id: test-1
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: "firstbranch"
+          branch: ${{ env.BRANCH_NAME }}
           base: main
           title: "demo for auto pr1"
           body:
