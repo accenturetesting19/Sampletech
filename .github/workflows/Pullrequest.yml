@@ -17,10 +17,10 @@ jobs:
         run: echo ${{env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
         
       - name: Raise PR
-        id: test1
+        id: first
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: "branch1"
+          branch: "dev"
           base: main
           title: "demo for auto pr"
           committer: ${{env.GIT_COMMIT_AUTHOR_NAME }} <${{env.GIT_COMMIT_AUTHOR_EMAIL }}">
@@ -28,19 +28,19 @@ jobs:
           body:
             This is to show automatic PR creation
           token: ${{secrets.GITHUB_TOKEN }}
-          #delete-branch: true
+          delete-branch: true
 
       - name: Pull request number
         run: |
-          echo "Pull Request Number - ${{ steps.test1.outputs.pull-request-number }}"
+          echo "Pull Request Number - ${{ steps.first.outputs.pull-request-number }}"
 
       - name: Approve pull Request
-        if: ${{ steps.test1.outputs.pull-request-number }}
+        if: ${{ steps.first.outputs.pull-request-number }}
         uses: hmarr/auto-approve-action@v2
         with:
-          #github-token: ${{ secrets.GITHUB_TOKEN }}
-          github-token: ${{ secrets.APPROVER_DEMO }}
-          pull-request-number: ${{ steps.test1.outputs.pull-request-number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          #github-token: ${{ secrets.APPROVER_DEMO }}
+          pull-request-number: ${{ steps.first.outputs.pull-request-number }}
      # - name: Approve Pull Request1
       #  uses: juliangruber/approve-pull-request-action@v1
        # with:
@@ -51,5 +51,5 @@ jobs:
         uses: juliangruber/merge-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.test1.outputs.pull-request-number }}
+          number: ${{ steps.first.outputs.pull-request-number }}
         #method: squash
