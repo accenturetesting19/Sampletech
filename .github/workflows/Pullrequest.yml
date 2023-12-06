@@ -14,7 +14,15 @@ jobs:
 
       - name: extract git commit data
         uses: rlespinasse/git-commit-data-action@v1.x
-
+      - name: Create commits
+        run: |
+          git config user.name 'accenturetesting19'
+          git config user.email 'accenturetesting19@users.noreply.github.com'
+          date +%s > report.txt
+          git commit -am "Modify tracked file during workflow"
+          date +%s > new-report.txt
+          git add -A
+          git commit -m "Add untracked file during workflow"
 
       - name: Raise PR 1
         id: test-1
