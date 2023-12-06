@@ -7,16 +7,19 @@ on:
       - master
 
 jobs:
-  build:
+  pull-request:
+    name: Open PR to main
     runs-on: ubuntu-latest
     steps:
-       - name: checkout
-         uses: actions/checkout@v4
-       - name: Create Pull Request
-         id: cpr
-         uses: peter-evans/create-pull-request@v5
-       - name: Check outputs
-         if: ${{ steps.cpr.outputs.pull-request-number }}
-         run: |
-           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-           #echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+    - uses: actions/checkout@v3
+      name: checkout
+
+    - uses: repo-sync/pull-request@v2
+      name: pull-request
+      with:
+        destination_branch: "main"
+        pr_title: "Pulling ${{ github.ref }} into main"
+        pr_body: ":crown: *An automated PR*"
+        pr_reviewer: "acce turetesting19"
+        pr_draft: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
