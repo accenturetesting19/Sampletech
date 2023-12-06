@@ -1,7 +1,9 @@
 name: Create Pull Request Example Command
 on:
-  repository_dispatch:
-    types: [cpr-example-command]
+  push:
+    branches:
+      - main
+      - master
 jobs:
   createPullRequest:
     runs-on: ubuntu-latest
