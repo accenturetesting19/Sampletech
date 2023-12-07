@@ -14,9 +14,7 @@ jobs:
       - run: |
           git config user.email noreply@github.com
           git config user.name "GitHub actions"
-          git checkout -b new1
-          git commit --message "Some changes"
-          git push origin new1
+
       - name: extract git commit data
         uses: rlespinasse/git-commit-data-action@v1.x
 
