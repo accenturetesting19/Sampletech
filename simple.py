@@ -1,3 +1,3 @@
 print("Hello World")
-print("Develop")
-print("Testing")
+print("Develop from master")
+print("Testing from master")
