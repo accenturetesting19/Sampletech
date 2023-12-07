@@ -26,12 +26,14 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: "firstbranch"
-          base: main
+          #base: main
           title: "demo for auto pr1"
-          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
-          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
+          #committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
+          #author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
           body:
             This is to show automatic PR creation
+          assignees: accenturetesting19
+          reviewers: accenturetesting19
           token: ${{ secrets.GITHUB_TOKEN }}
           delete-branch: true
       - name: Pull request number
