@@ -14,11 +14,11 @@ jobs:
       - run: |
           git config user.email noreply@github.com
           git config user.name "GitHub actions"
-          git checkout -b devnew
+          git checkout -b devnew/${{ github.sha }}
           echo date > current-date.txt
           git add current-date.txt
           git commit --message "Changes made"
-          git push origin devnew
+          git push origin devnew/${{ github.sha }}
           
       - name: extract git commit data
         uses: rlespinasse/git-commit-data-action@v1.x
@@ -31,7 +31,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: "firstbranch"
-          #base: main
+          base: main
           title: "demo for auto pr1"
           #committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
           #author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
