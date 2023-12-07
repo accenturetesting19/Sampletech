@@ -12,7 +12,18 @@ jobs:
     steps:
       - name: checking out code
         uses: actions/checkout@v4
+<<<<<<< HEAD
 
+=======
+      #- run: |
+       #   git config user.email noreply@github.com
+        #  git config user.name "GitHub actions"
+         # git checkout -b devnew
+          #echo date > current-date.txt
+         # git add current-date.txt
+         # git commit --message "Some changes"
+         # git push origin devnew
+>>>>>>> 7690966c5d3b3442723067c76cd2d767d8f07f23
 
       - name: extract git commit data
         uses: rlespinasse/git-commit-data-action@v1.x
@@ -24,7 +35,11 @@ jobs:
         id: test1
         uses: peter-evans/create-pull-request@v5
         with:
+<<<<<<< HEAD
           branch: "develop"
+=======
+          branch: "branchcreate"
+>>>>>>> 7690966c5d3b3442723067c76cd2d767d8f07f23
           base: main
           title: "Automatic Pull request creation"
         #  committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
